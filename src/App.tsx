@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import HomePage from "./pages/HomePage";
 import UsersPage from "./pages/UsersPage";
 import UserDetailPage from "./pages/UserDetailPage";
+import "./App.css";
 
 const App = () => {
     return (
