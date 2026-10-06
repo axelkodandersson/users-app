@@ -1,4 +1,5 @@
 import type { User } from "../types/User";
+import { getInitials } from "../utils/getInitials";
 
 interface UserDetailsProps {
     user: User;
@@ -9,21 +10,32 @@ const UserDetails = ({ user }: UserDetailsProps) => {
 
     return (
         <div className="userDetails">
-            <h1>{profile.name}</h1>
-            <p>Användarnamn: {user.username}</p>
+            <header>
+                <div className="avatar large" aria-hidden="true">
+                    {getInitials(profile.name)}
+                </div>
+                <div>
+                    <h1>{profile.name}</h1>
+                    <p>@{user.username}</p>
+                </div>
+            </header>
 
             <section>
                 <h2>Kontakt</h2>
-                <p>E-post: {profile.email}</p>
+                <p>{profile.email}</p>
                 <p>
-                    Adress: {profile.address.street}, {profile.address.zipCode}{" "}
+                    {profile.address.street}, {profile.address.zipCode}{" "}
                     {profile.address.city}
                 </p>
             </section>
 
             <section>
                 <h2>Roller</h2>
-                <p>{roles.join(", ")}</p>
+                <ul className="roles">
+                    {roles.map(role => (
+                        <li key={role}>{role}</li>
+                    ))}
+                </ul>
             </section>
 
             <section>
